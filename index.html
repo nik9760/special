@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>for the most beautiful soul · forever</title>
+  <!-- Elegant & soft fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #fff9f7 0%, #fdeff2 100%);
+      color: #5e4b56;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* floating hearts / glowing particles container */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .heart-particle {
+      position: absolute;
+      color: rgba(255, 200, 210, 0.5);
+      font-size: 1.2rem;
+      user-select: none;
+      opacity: 0;
+      animation: floatHeart 16s infinite ease-in-out;
+      filter: drop-shadow(0 0 6px #ffb7c5);
+    }
+
+    @keyframes floatHeart {
+      0% { transform: translateY(110vh) rotate(0deg) scale(0.6); opacity: 0.4; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0; }
+    }
+
+    /* main content layer above particles */
+    .wrapper {
+      position: relative;
+      z-index: 5;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      backdrop-filter: blur(1px);
+    }
+
+    /* elegant headings */
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+
+    h1 {
+      font-size: 3.8rem;
+      font-weight: 300;
+      color: #ac6f7b;
+      line-height: 1.2;
+      text-shadow: 2px 2px 10px rgba(255, 220, 225, 0.8);
+    }
+
+    h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      color: #b27c86;
+      border-bottom: 1px solid #fbc1cb;
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      color: #d68e9b;
+      margin-bottom: 0.5rem;
+    }
+
+    /* sections soft cards */
+    section {
+      background: rgba(255, 250, 245, 0.6);
+      backdrop-filter: blur(4px);
+      border-radius: 3rem 3rem 3rem 3rem;
+      padding: 3rem 2.5rem;
+      margin: 4rem 0;
+      box-shadow: 0 20px 40px -10px rgba(190, 130, 140, 0.2),
+                  0 0 0 1px rgba(255, 235, 235, 0.6);
+      transition: transform 0.2s ease;
+    }
+
+    section:hover {
+      transform: scale(1.003);
+      box-shadow: 0 25px 45px -8px rgba(170, 120, 130, 0.25);
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: rgba(255, 240, 240, 0.4);
+      backdrop-filter: blur(5px);
+      border-radius: 4rem;
+      margin-top: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.6rem;
+      font-weight: 300;
+      max-width: 700px;
+      margin: 1rem auto 0;
+      color: #83616b;
+      font-style: italic;
+    }
+
+    .sub-hero {
+      font-size: 1.3rem;
+      margin: 1rem 0 2rem;
+      color: #a4737e;
+    }
+
+    /* section content */
+    .about-text {
+      font-size: 1.3rem;
+      font-weight: 300;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .about-text p {
+      margin-bottom: 1.8rem;
+    }
+
+    .smile-grid, .moments-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .smile-card {
+      background: #fff6f2;
+      border-radius: 3rem;
+      padding: 2rem;
+      flex: 1 1 280px;
+      max-width: 350px;
+      box-shadow: 0 8px 20px #ffe2e2;
+      transition: all 0.3s ease;
+      border: 1px solid #ffdad3;
+    }
+
+    .smile-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 30px #fec9cf;
+      background: white;
+    }
+
+    .smile-card p {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #6b4e55;
+    }
+
+    /* moments — memory placeholders with hover */
+    .memory {
+      background: #fae6e4;
+      border-radius: 2rem;
+      padding: 2rem 1.5rem;
+      flex: 1 1 200px;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: inset 0 0 0 1px #fff6f0, 0 12px 20px -12px #b8949c;
+      transition: 0.3s;
+      border: 2px solid rgba(255, 255, 255, 0.7);
+    }
+
+    .memory i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #c68691;
+      filter: drop-shadow(0 0 4px #ffb7b7);
+    }
+
+    .memory span {
+      font-size: 1.2rem;
+      color: #6c4f58;
+      font-weight: 400;
+    }
+
+    .memory:hover {
+      background: #ffefec;
+      border-color: #ffb6bb;
+      transform: scale(1.02) rotate(0.5deg);
+      box-shadow: 0 15px 25px -10px #d6a1aa;
+    }
+
+    .memory:hover i {
+      animation: sparkle 1s infinite alternate;
+    }
+
+    @keyframes sparkle {
+      0% { text-shadow: 0 0 2px gold; }
+      100% { text-shadow: 0 0 12px #ffaecc, 0 0 20px #ffc0cb; }
+    }
+
+    /* letter section */
+    .letter-box {
+      background: rgba(255, 245, 240, 0.8);
+      border-radius: 3rem 1rem 3rem 1rem;
+      padding: 2.8rem;
+      font-size: 1.3rem;
+      font-weight: 300;
+      white-space: pre-line;
+      border-left: 10px solid #f8c3cd;
+      box-shadow: 0 0 30px #ffd9df;
+      font-family: 'Cormorant Garamond', serif;
+      line-height: 1.9;
+    }
+
+    .letter-box p {
+      margin-bottom: 1.3rem;
+    }
+
+    .signature {
+      font-size: 2rem;
+      font-family: 'Cormorant Garamond', cursive;
+      color: #ab5e6f;
+      margin-top: 2rem;
+      text-align: right;
+      opacity: 0.85;
+    }
+
+    /* footer */
+    footer {
+      text-align: center;
+      padding: 3rem 1rem 1rem;
+      font-size: 1.2rem;
+      color: #a87b84;
+      font-weight: 300;
+      letter-spacing: 1px;
+      border-top: 1px dashed #fec7cf;
+      margin-top: 5rem;
+    }
+
+    /* smooth extra glow */
+    .glow-text {
+      color: #c8788b;
+      font-weight: 500;
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      h1 { font-size: 2.8rem; }
+      h2 { font-size: 2.2rem; }
+      section { padding: 2rem 1.5rem; }
+    }
+
+    /* small floating hearts in bg (via css, besides particles) */
+    .floating-heart {
+      position: absolute;
+      font-size: 1.4rem;
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- floating particles (hearts + little glow) -->
+  <div id="particles"></div>
+
+  <div class="wrapper">
+    <!-- hero section -->
+    <section class="hero" id="home">
+      <h1>For the Most Beautiful Soul I Know</h1>
+      <p class="sub-hero">her smile lights up everything around her</p>
+      <div style="max-width: 700px; margin: 2rem auto 0; font-size: 1.7rem; font-family: 'Cormorant Garamond'; background: rgba(255,255,240,0.4); border-radius: 5rem; padding: 0.5rem 2rem;">
+        “In a world full of ordinary moments, you are the one who makes everything feel extraordinary.”
+      </div>
+      <div style="margin-top: 4rem;">
+        <span style="border: 1px solid #f4a7b4; border-radius: 40px; padding: 0.5rem 2rem; color: #885e68;">✨ keep scrolling ✨</span>
+      </div>
+    </section>
+
+    <!-- 1. about her — using your heartfelt words -->
+    <section id="about">
+      <h2>about her</h2>
+      <div class="about-text">
+        <p>There are people we meet in life who simply pass by, and then there are people like you who quietly become a beautiful part of our everyday thoughts.</p>
+        <p>Your eyes hold a calmness that feels like home, and your smile has this magical way of making everything around it brighter. It's not just your beauty that stands out, it's the warmth in your heart, the way you think, and the dreams you carry for your future.</p>
+        <p>Talking to you never feels ordinary. Even the simplest conversations with you feel special, like time slows down just a little when you're around. And honestly, whenever you're there, the rest of the world seems to disappear for me. In those moments, it feels like nothing else exists except your smile, your voice, and the feeling of being close to you.</p>
+      </div>
+    </section>
+
+    <!-- 2. her smile — now with your poetry -->
+    <section id="smile">
+      <h2>her smile</h2>
+      <div class="smile-grid">
+        <div class="smile-card">
+          <p>“Your smile has this magical way of making everything around it brighter. It’s like sunshine after rain ... it transforms an ordinary day into something extraordinary.”</p>
+        </div>
+        <div class="smile-card">
+          <p>“When you smile, the rest of the world seems to disappear. Nothing else exists except that light, and the feeling of being close to you.”</p>
+        </div>
+        <div class="smile-card">
+          <p>“It's not just a smile .. it's a quiet kind of magic that makes everything feel peaceful, like coming home.”</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. moments with you (photos / memories placeholders with hover) -->
+    <section id="moments">
+      <h2>moments with you</h2>
+      <div class="moments-grid">
+        <div class="memory">
+          <i>☕️</i>
+          <span>simple talks that<br>feel like forever</span>
+        </div>
+        <div class="memory">
+          <i>🌅</i>
+          <span>golden hour<br>and your laughter</span>
+        </div>
+        <div class="memory">
+          <i>📖</i>
+          <span>dreams we shared<br>under the stars</span>
+        </div>
+        <div class="memory">
+          <i>✨</i>
+          <span>when time slowed<br>just for us</span>
+        </div>
+      </div>
+      <p style="text-align: center; margin-top: 2.5rem; opacity: 0.7; font-size: 1.1rem;">each moment glows because you were there.</p>
+    </section>
+
+    <!-- 4. a letter to her — infused with your words and heart -->
+    <section id="letter">
+      <h2>a letter to her</h2>
+      <div class="letter-box">
+        <p>My dearest,</p>
+        <p>What I admire the most about you is your strength and your desire to do something meaningful in life. Your ambition, your honesty, and your spirit make you far more beautiful than words can describe.</p>
+        <p>This little page is just a small way of saying that you are someone truly special. Not just because of how you look, but because of who you are. The warmth in your heart, the way you think, the dreams you carry — they inspire me every day.</p>
+        <p>And somehow, the world feels a little more beautiful knowing someone like you exists in it. You are not just a thought; you are a gentle presence that makes everything softer, brighter, and full of meaning.</p>
+        <p>With all the admiration I hold,</p>
+        <div class="signature">yours, always</div>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+      <p>Made with love, just for you.</p>
+      <p style="font-size: 1rem; margin-top: 1rem; color: #c89ca5;">always · only · you</p>
+    </footer>
+  </div>
+
+  <!-- floating hearts/glow particles script -->
+  <script>
+    (function createParticles() {
+      const container = document.getElementById('particles');
+      const particleCount = 45;
+      const symbols = ['❤️', '🌸', '✨', '🩷', '💫', '🌷', '🕯️', '🌙', '🍃']; // soft romantic shapes
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'heart-particle';
+        // random symbol
+        const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+        particle.textContent = symbol;
+
+        // random left, size, delay, duration
+        const left = Math.random() * 100;
+        const size = 0.8 + Math.random() * 1.2;
+        const delay = Math.random() * 15;
+        const duration = 10 + Math.random() * 20; // between 10 and 30s
+        const opacity = 0.2 + Math.random() * 0.3;
+
+        particle.style.left = left + '%';
+        particle.style.fontSize = (size * 1.2) + 'rem';
+        particle.style.animationDelay = delay + 's';
+        particle.style.animationDuration = duration + 's';
+        particle.style.opacity = opacity;
+        particle.style.filter = `drop-shadow(0 0 6px #ffb0c0)`;
+
+        container.appendChild(particle);
+      }
+    })();
+
+    // smooth scroll offset for anchor clicks (if any used)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // tiny hover glow on hero title
+    const heroTitle = document.querySelector('h1');
+    if(heroTitle) {
+      heroTitle.addEventListener('mouseenter', () => {
+        heroTitle.style.textShadow = '0 0 20px #fbb1c0, 0 0 30px #ffe2e8';
+      });
+      heroTitle.addEventListener('mouseleave', () => {
+        heroTitle.style.textShadow = '2px 2px 10px rgba(255, 220, 225, 0.8)';
+      });
+    }
+  </script>
+
+  <!-- subtle extra romantic floating elements (additional small hearts in bg) -->
+  <div style="position: fixed; bottom: 10px; left: 0; width: 100%; pointer-events: none; z-index: 3; opacity: 0.2; display: flex; justify-content: space-around; font-size: 2rem; color: #ffc0cb; filter: blur(1px);">❤️ ❤️ ❤️</div>
+</body>
+</html>
