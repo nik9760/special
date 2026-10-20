@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For You ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg1:#12061a;--bg2:#2b0a2e;--text:#ffe9f1;--muted:#e8b4c8;--rose:#ff4d79;--rose2:#ff8fb1;--gold:#ffd6a5;--glass:rgba(255,255,255,.07);--border:rgba(255,143,177,.35);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:radial-gradient(ellipse at 50% 0%,var(--bg2),var(--bg1) 70%) fixed;color:var(--text);font-family:"Playfair Display",Georgia,"Times New Roman",serif;overflow-x:hidden}
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.scr{display:none;width:100%;max-width:420px;text-align:center;animation:fade 1s ease both}
+.scr.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.script{font-family:"Great Vibes","Brush Script MT",cursive;font-weight:400}
+.glass{background:var(--glass);border:1px solid var(--border);border-radius:26px;padding:34px 24px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 0 50px rgba(255,77,121,.18)}
+h1{font-size:52px;margin:0 0 8px;color:var(--rose2);text-shadow:0 0 22px rgba(255,77,121,.6);line-height:1.1}
+p{margin:0 0 18px;color:var(--muted);line-height:1.6;font-size:16px;font-style:italic}
+.pulse{font-size:54px;display:inline-block;animation:beat 1.2s infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.18)}}
+input{width:100%;padding:14px;font:inherit;font-size:20px;text-align:center;color:var(--text);background:rgba(255,255,255,.08);border:1px solid var(--border);border-radius:16px;outline:none;margin-bottom:14px}
+input:focus{border-color:var(--rose2);box-shadow:0 0 18px rgba(255,77,121,.4)}
+input::placeholder{color:#c98ba3}
+.btn{display:inline-block;width:100%;padding:14px 20px;font:inherit;font-size:18px;font-weight:600;color:#fff;background:linear-gradient(135deg,var(--rose2),var(--rose));border:0;border-radius:16px;cursor:pointer;box-shadow:0 8px 26px rgba(255,77,121,.4)}
+.btn:active{transform:scale(.97)}
+.q{font-size:38px;margin:6px 0 18px;color:var(--gold);text-shadow:0 0 18px rgba(255,214,165,.4)}
+#hint{min-height:24px;margin-top:14px;font-size:15px}
+.shake{animation:shake .45s}
+@keyframes shake{25%{transform:translateX(-9px)}75%{transform:translateX(9px)}}
+.letter{text-align:left;font-size:17px;line-height:1.85;color:var(--text);min-height:220px;margin-bottom:10px}
+.sign{font-size:34px;color:var(--rose2);text-align:right;opacity:0;transition:opacity 1.5s}
+.sign.show{opacity:1}
+#ask{display:none;margin-top:22px}
+#ask.show{display:block;animation:fade 1s both}
+.row{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:14px}
+.row .btn{width:auto;flex:1}
+#no{background:rgba(255,255,255,.12);box-shadow:none;color:var(--muted)}
+.final h1{font-size:60px}
+.petal{position:fixed;top:-40px;z-index:5;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(540deg);opacity:.2}}
+.burst{position:fixed;z-index:50;pointer-events:none;animation:burst 2.4s ease-out forwards}
+@keyframes burst{to{transform:translate(var(--bx),var(--by)) scale(1.3);opacity:0}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<main>
+
+<section class="scr active" id="s1">
+  <div class="glass">
+    <div class="pulse">💌</div>
+    <h1 class="script">Hello, beautiful</h1>
+    <p>Someone left a little surprise for you.<br>First, tell me your name?</p>
+    <input id="name" type="text" placeholder="Your name" autocomplete="off" maxlength="30">
+    <button class="btn" id="b1">Open my surprise</button>
+  </div>
+</section>
+
+<section class="scr" id="s2">
+  <div class="glass">
+    <div class="pulse">✨</div>
+    <h1 class="script" id="hi"></h1>
+    <p>Only the smartest, prettiest girl can unlock<br>what’s inside. Solve this for me:</p>
+    <div class="q" id="q"></div>
+    <input id="ans" type="number" inputmode="numeric" placeholder="?" autocomplete="off">
+    <button class="btn" id="b2">Unlock my heart</button>
+    <div id="hint"></div>
+  </div>
+</section>
+
+<section class="scr" id="s3">
+  <div class="glass">
+    <h1 class="script" id="dear"></h1>
+    <div class="letter" id="letter"></div>
+    <div class="sign script" id="sign">Forever yours,<br>Nikhil ❤️</div>
+    <div id="ask">
+      <h1 class="script" style="font-size:40px">Will you be mine, forever?</h1>
+      <div class="row">
+        <button class="btn" id="yes">Yes 💖</button>
+        <button class="btn" id="no">No</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scr final" id="s4">
+  <div class="glass">
+    <div class="pulse">❤️</div>
+    <h1 class="script">I love you</h1>
+    <h1 class="script" id="fin" style="font-size:44px;color:var(--gold)"></h1>
+    <p>You just made me the happiest person alive.<br>Today, tomorrow, and always. 💞</p>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var her = 'My Love';
+
+  function show(id){
+    var s = document.querySelectorAll('.scr');
+    for (var i=0;i<s.length;i++) s[i].classList.remove('active');
+    $(id).classList.add('active');
+  }
+
+  /* ---------- background: stars + drifting hearts ---------- */
+  var cv = $('bg'), ctx = cv.getContext('2d'), W, H, stars = [], hearts = [];
+  function resize(){
+    W = cv.width = window.innerWidth; H = cv.height = window.innerHeight;
+    stars = []; hearts = [];
+    for (var i=0;i<110;i++) stars.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+.3,p:Math.random()*6});
+    for (var j=0;j<18;j++) hearts.push({x:Math.random()*W,y:Math.random()*H,s:Math.random()*16+10,v:Math.random()*.5+.2,p:Math.random()*6});
+  }
+  window.addEventListener('resize', resize); resize();
+  function draw(t){
+    ctx.clearRect(0,0,W,H);
+    for (var i=0;i<stars.length;i++){
+      var s = stars[i], a = .4 + .6*Math.abs(Math.sin(t/1200 + s.p));
+      ctx.fillStyle = 'rgba(255,235,245,'+a+')';
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.283); ctx.fill();
+    }
+    for (var j=0;j<hearts.length;j++){
+      var h = hearts[j];
+      h.y -= h.v; h.x += Math.sin(t/1500 + h.p)*.3;
+      if (h.y < -30){ h.y = H + 30; h.x = Math.random()*W; }
+      ctx.font = h.s + 'px serif';
+      ctx.fillStyle = 'rgba(255,77,121,' + (.18 + .12*Math.sin(t/900 + h.p)) + ')';
+      ctx.fillText('♥', h.x, h.y);
+    }
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+
+  /* ---------- petals ---------- */
+  function petals(n){
+    var set = ['🌹','🌸','💗','❤️','💖'];
+    for (var i=0;i<n;i++){
+      (function(){
+        var p = document.createElement('span');
+        p.className = 'petal';
+        p.textContent = set[Math.floor(Math.random()*set.length)];
+        p.style.left = Math.random()*100 + 'vw';
+        p.style.fontSize = (16+Math.random()*22) + 'px';
+        p.style.animationDuration = (5+Math.random()*5) + 's';
+        p.style.animationDelay = (Math.random()*2.5) + 's';
+        p.style.setProperty('--dx', (Math.random()*160-80) + 'px');
+        document.body.appendChild(p);
+        setTimeout(function(){ p.remove(); }, 11000);
+      })();
+    }
+  }
+  function burst(){
+    var set = ['❤️','💖','💕','💘','💗','🌹','✨'];
+    for (var i=0;i<60;i++){
+      (function(){
+        var b = document.createElement('span');
+        b.className = 'burst';
+        b.textContent = set[Math.floor(Math.random()*set.length)];
+        b.style.left = '50vw'; b.style.top = '45vh';
+        b.style.fontSize = (18+Math.random()*26) + 'px';
+        var ang = Math.random()*6.283, d = 120 + Math.random()*260;
+        b.style.setProperty('--bx', Math.cos(ang)*d + 'px');
+        b.style.setProperty('--by', Math.sin(ang)*d + 'px');
+        document.body.appendChild(b);
+        setTimeout(function(){ b.remove(); }, 2600);
+      })();
+    }
+  }
+
+  /* ---------- screen 1 ---------- */
+  function start(){
+    var v = $('name').value.trim();
+    if (v) her = v;
+    $('hi').textContent = 'Hi, ' + her + ' 💕';
+    newQ(); show('s2'); setTimeout(function(){ $('ans').focus(); }, 300);
+  }
+  $('b1').addEventListener('click', start);
+  $('name').addEventListener('keydown', function(e){ if (e.key==='Enter') start(); });
+
+  /* ---------- screen 2: math ---------- */
+  var answer = 0, tries = 0;
+  function newQ(){
+    var a = Math.floor(Math.random()*8)+4, b = Math.floor(Math.random()*8)+3, c = Math.floor(Math.random()*9)+2;
+    answer = a*b + c;
+    $('q').textContent = a + ' × ' + b + ' + ' + c + ' = ?';
+  }
+  function check(){
+    var v = $('ans').value.trim();
+    if (!v){ $('hint').textContent = 'Type your answer, love 💭'; return; }
+    if (Number(v) === answer){
+      $('hint').textContent = '';
+      petals(30); show('s3'); writeLetter();
+    } else {
+      tries++;
+      var g = $('s2'); g.classList.remove('shake'); void g.offsetWidth; g.classList.add('shake');
+      $('hint').textContent = tries >= 2
+        ? 'Hint: multiply first, then add. You’ve got this, my smartypants 😘'
+        : 'So close! Try once more, my love 💗';
+      $('ans').select();
+    }
+  }
+  $('b2').addEventListener('click', check);
+  $('ans').addEventListener('keydown', function(e){ if (e.key==='Enter') check(); });
+
+  /* ---------- screen 3: typed letter ---------- */
+  function writeLetter(){
+    $('dear').textContent = 'Dear ' + her + ',';
+    var text = 'From the very first moment, my world got softer, brighter, and a little more magical. ' +
+      'You turn ordinary days into my favourite memories, and every moment with you feels like home. ' +
+      'I don’t need a perfect world, I just need you in it. ' +
+      'You are my smile, my peace, and my favourite person in every universe.';
+    var el = $('letter'), i = 0;
+    el.textContent = '';
+    (function type(){
+      if (i < text.length){
+        el.textContent += text.charAt(i++);
+        setTimeout(type, 32);
+      } else {
+        $('sign').classList.add('show');
+        setTimeout(function(){ $('ask').classList.add('show'); petals(14); }, 1400);
+      }
+    })();
+  }
+
+  /* ---------- the question ---------- */
+  var no = $('no');
+  function dodge(e){
+    if (e) e.preventDefault();
+    no.style.position = 'fixed';
+    no.style.width = '90px';
+    no.style.zIndex = 40;
+    no.style.left = Math.max(8, Math.random()*(window.innerWidth-110)) + 'px';
+    no.style.top = Math.max(8, Math.random()*(window.innerHeight-60)) + 'px';
+  }
+  no.addEventListener('mouseenter', dodge);
+  no.addEventListener('touchstart', dodge);
+  no.addEventListener('click', dodge);
+
+  $('yes').addEventListener('click', function(){
+    no.style.display = 'none';
+    $('fin').textContent = her + ', forever and always';
+    show('s4'); burst(); petals(40);
+    setTimeout(burst, 900); setTimeout(burst, 1800);
+  });
+})();
+</script>
+</body>
+</html>
